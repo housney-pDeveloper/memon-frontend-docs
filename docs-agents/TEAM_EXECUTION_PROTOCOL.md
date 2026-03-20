@@ -644,4 +644,51 @@ cd 32_appuser && npm run build
 
 ---
 
+## 10. Superpowers 플러그인 활용
+
+Team 수행 시 각 STEP에서 적합한 superpowers 플러그인을 활용한다.
+
+### 10.1 STEP별 플러그인 매핑
+
+```
+STEP 2. 01_planning-team → task_prompt.md 생성
+    ├── /brainstorming → 기획·요구사항 탐색
+    └── /writing-plans → 구현 계획 수립
+
+STEP 3. Team 순차/병렬 수행
+    ├── /frontend-design → UI 컴포넌트·페이지 생성/개선 시
+    ├── /executing-plans → 계획 기반 구현 수행
+    ├── /dispatching-parallel-agents → 프로젝트별 병렬 개발 (패턴 A)
+    └── /test-driven-development → TDD 적용 시
+
+STEP 4. 04_qa-team → 검증
+    ├── /requesting-code-review → 코드 리뷰 요청
+    ├── /receiving-code-review → 리뷰 피드백 처리
+    ├── /verification-before-completion → 완료 전 최종 검증
+    └── /systematic-debugging → 디버깅 필요 시
+
+STEP 5. Build & Test 완료 후
+    └── /finishing-a-development-branch → 개발 완료 후 통합
+```
+
+### 10.2 플러그인과 기존 프로세스의 관계
+
+| 기존 프로세스 | 플러그인 | 보완 역할 |
+|-------------|---------|----------|
+| 01_planning-team의 task_prompt.md 생성 | `/brainstorming` + `/writing-plans` | 요구사항 탐색 강화, 계획 구조화 |
+| 03_development-team UI 구현 | `/frontend-design` | 프로덕션 수준의 고품질 UI 컴포넌트·페이지 생성 |
+| 03_development-team 순차 수행 | `/executing-plans` | 계획 기반 체계적 실행 |
+| 03_development-team 병렬 수행 (패턴 A) | `/dispatching-parallel-agents` | webadmin/appuser/publishing 병렬 개발 |
+| 04_qa-team code-reviewer 검증 | `/requesting-code-review` + `/receiving-code-review` | 리뷰 프로세스 체계화 |
+| 04_qa-team 검증 완료 판정 | `/verification-before-completion` | 완료 선언 전 증거 기반 검증 |
+
+### 10.3 적용 규칙
+
+- `[team]` 작업 시 superpowers 플러그인 사용은 **필수**이다
+- 플러그인은 기존 TEAM_EXECUTION_PROTOCOL을 **대체하지 않고 보완**한다
+- 기존 result_*.md 생성, 검증 회차(최대 20회), 빌드/테스트 프로세스는 그대로 유지한다
+- 04_qa-team 검증 시 `/code-review`, `/simplify`, `/security-guidance` 플러그인도 함께 활용한다
+
+---
+
 END OF FILE

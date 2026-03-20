@@ -86,3 +86,34 @@
 | Major | 아키텍처 위반, 성능 문제 | 수정 권장 |
 | Minor | 컨벤션 미준수, 가독성 | 수정 권장 (필수 아님) |
 | Suggestion | 개선 아이디어 | 참고용 |
+
+---
+
+## Claude Code 플러그인 활용
+
+코드 리뷰 수행 시 다음 플러그인을 활용한다.
+
+| 플러그인 | 명령 | 활용 시점 | 용도 |
+|---------|------|----------|------|
+| code-review | `/code-review` | PR 기반 리뷰 시 | 체계적 코드 리뷰 수행, PR diff 분석 |
+| simplify | `/simplify` | 리뷰 완료 후 | 코드 재사용·품질·효율성 개선 점검 |
+| github | `gh` CLI | 리뷰 결과 공유 시 | PR 코멘트 작성, 리뷰 상태 관리 |
+
+### 활용 프로세스
+
+1. PR이 존재하는 경우 → `/code-review`로 위 체크리스트 기반 리뷰 수행
+2. 리뷰 완료 후 → `/simplify`로 변경된 코드의 품질·재사용·효율성 개선 점검
+3. 리뷰 결과를 GitHub PR에 코멘트로 기록 (`gh pr comment`, `gh pr review`)
+4. Team 수행 시 → 리뷰 결과를 result_VERIFICATION.md에 기록
+
+### 04_qa-team 수행 시 플러그인 순서
+
+```
+code-reviewer 수행 (게이트)
+    │ → `/code-review` + `/simplify` 활용
+    ▼ Critical/Major 0건 시에만 진행
+security-auditor 수행
+    │ → `/security-guidance` 활용
+    ▼
+종합 판정 → result_VERIFICATION.md
+```
